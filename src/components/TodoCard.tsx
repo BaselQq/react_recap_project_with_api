@@ -1,12 +1,13 @@
 import { Todos } from "../App.tsx";
 import axios from "axios";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import StatusSelect from "./StatusSelect.tsx";
 
 export default function TodoCard(todo: Todos) {
     const [isEdit, setIsEdit] = useState<boolean>(true)
     const [description, setDescription] = useState<string>("")
 
-    function handleTodoNewDescription(id: string, status: string, defaultDescription: string) {
+    function handleTodoNewValues(id: string, status: string, defaultDescription: string) {
         axios.put("/api/todo/" + id + "/update",
             {
                 "id": id,
@@ -20,6 +21,11 @@ export default function TodoCard(todo: Todos) {
         setIsEdit(false)
     }
 
+    function handleOnSelectChange( id: string, event: ChangeEvent<HTMLSelectElement>, defaultDescription: string) {
+        handleTodoNewValues(id, event.target.value, defaultDescription)
+        window.location.reload();
+    }
+
     return <>
         <div className={"todo-card"} key={todo.id}>
         <h2>
@@ -29,9 +35,14 @@ export default function TodoCard(todo: Todos) {
                         defaultValue={todo.description}
                         onChange={e => setDescription(e.target.value)}
                     />
-                    <button onClick={() => handleTodoNewDescription(todo.id, todo.status, todo.description)}>Submit</button>
+                    <button onClick={() => handleTodoNewValues(todo.id, todo.status, todo.description)}>Submit</button>
                 </form>
                 }
+                <div>
+                    <StatusSelect status={todo.status} onChange={
+                        (event) => handleOnSelectChange(todo.id, event, todo.description)
+                    } />
+                </div>
         </h2>
             <button onClick={handleTodoEdit}>Edit</button>
         </div>

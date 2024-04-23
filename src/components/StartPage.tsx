@@ -17,10 +17,11 @@ export default function StartPage() {
 
     return <>
         <TodosNavi/>
+        <h1>All Todos</h1>
         {todos?.map((todo) => {
             return <>
-             <TodoCard id={todo.id} description={todo.description} status={todo.status}/>
+                <TodoCard id={todo.id} description={todo.description} status={todo.status}/>
             </>
         })}
-        </>
+    </>
 }

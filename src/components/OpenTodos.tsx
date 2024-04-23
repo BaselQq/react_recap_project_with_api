@@ -15,6 +15,7 @@ export default function OpenTodos() {
 
     return <>
         <TodosNavi/>
+        <h1>Open</h1>
         {openTodos?.filter((todo) => (
             todo.status == "OPEN"
         )).map((todo) => {

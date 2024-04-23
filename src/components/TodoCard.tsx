@@ -22,7 +22,6 @@ export default function TodoCard(todo: Todos) {
 
     return <>
         <div className={"todo-card"} key={todo.id}>
-        <h1>{todo.status}</h1>
         <h2>
             {isEdit ? todo.description :
                 <form>

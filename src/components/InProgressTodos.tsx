@@ -15,6 +15,7 @@ export default function OpenTodos() {
 
     return <>
         <TodosNavi/>
+        <h1>In Progress</h1>
         {openTodos?.filter((todo) => (
             todo.status == "IN_PROGRESS"
         )).map((todo) => {

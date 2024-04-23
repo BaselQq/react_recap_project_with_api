@@ -6,7 +6,7 @@ import InProgressTodos from "./components/InProgressTodos.tsx";
 import DoneTodos from "./components/DoneTodos.tsx";
 
 export type Todos = {
-    id: number,
+    id: string,
     description: string,
     status: string
 }

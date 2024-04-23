@@ -26,8 +26,14 @@ export default function TodoCard(todo: Todos) {
         window.location.reload();
     }
 
+    function handleTodoDelete(id: string) {
+        axios.delete("/api/todo/" + id)
+        window.location.reload();
+    }
+
     return <>
         <div className={"todo-card"} key={todo.id}>
+            <button onClick={() => handleTodoDelete(todo.id)}>X</button>
         <h2>
             {isEdit ? todo.description :
                 <form>
